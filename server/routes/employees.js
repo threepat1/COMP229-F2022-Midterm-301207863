@@ -92,6 +92,7 @@ router.post("/:id", (req, res, next) => {
   //declare the information of employee that match the query
   let updateEmployee = employee({
     _id: id,
+    Employeeid:req.body.Employeeid,
     Employeename: req.body.Employeename,
     Department: req.body.Department,
     Designation: req.body.Designation,
