@@ -1,3 +1,8 @@
+//File name: COMP229-F2022-Midterm-301207863
+//Author's name: Threepat Kiatkamol
+//student ID: 301207863
+//Wep app name: https://comp229-f2022-midterm-30120786.herokuapp.com/employees
+
 // modules required for routing
 let express = require("express");
 const { write } = require("fs");
@@ -27,6 +32,7 @@ router.get("/add", (req, res, next) => {
   /*****************
    * ADD CODE HERE *
    *****************/
+  //show the add page when you click add employee
    res.render("employees/add",{title:"Add employee"});
 });
 
@@ -35,6 +41,7 @@ router.post("/add", (req, res, next) => {
   /*****************
    * ADD CODE HERE *
    *****************/
+  //create new employee data on mongo atlas
   let newEmployee = employee({
     Employeeid: req.body.Employeeid,
     Employeename: req.body.Employeename,
@@ -42,11 +49,13 @@ router.post("/add", (req, res, next) => {
     Designation: req.body.Designation,
     Salary: req.body.Salary,
   });
+  //create new data
   employee.create(newEmployee,(err,Employee) =>{
     if(err){
       console.log(err);
       res.end(err);
     }else{
+      //if successful, it will update on employee list
       res.redirect("/employees");
     }
   });
@@ -57,14 +66,16 @@ router.get("/:id", (req, res, next) => {
   /*****************
    * ADD CODE HERE *
    *****************/
+  //get id params to match with data which we want to edit
   let id = req.params.id;
-
+  //system will find matching id from params
   employee.findById(id, (err, employee) => {
     if (err) {
       console.log(err);
       res.end(err);
     } else {
-      //show the edit view
+      // if successful, 
+      //show the edit view and old information 
       res.render("employees/details", {title: "Edit Employee",employees: employee});
 
     }
@@ -76,8 +87,9 @@ router.post("/:id", (req, res, next) => {
   /*****************
    * ADD CODE HERE *
    *****************/
+  //declare id params that we have
   let id = req.params.id;
-
+  //declare the information of employee that match the query
   let updateEmployee = employee({
     _id: id,
     Employeename: req.body.Employeename,
@@ -85,11 +97,14 @@ router.post("/:id", (req, res, next) => {
     Designation: req.body.Designation,
     Salary: req.body.Salary,
   });
+  //update the information of employee by id 
   employee.updateOne({_id:id}, updateEmployee,(err)=>{
     if(err){
       console.log(err);
       res.end(err);
     } else{
+      //if successful
+      //update infomation on employee list
       res.redirect("/employees");
     }
   })
@@ -112,7 +127,8 @@ router.get("/delete/:Employeename", (req, res, next) => {
        console.log(err);
        res.end(err);
      } else {
-       //refresh employees
+      // if successful,
+       //update on employees list
        res.redirect("/employees");
      }
    });
