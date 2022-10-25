@@ -1,0 +1,68 @@
+<% include ../partials/header.ejs %>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+      <h3>Employee Information</h3>
+      <!-- ------------------------ -->
+      <!-- FIX THE ADD BUTTON BELOW -->
+      <!-- ------------------------ -->
+      <a href="/employees/add" class="btn btn-primary"
+        ><i class="fa fa-plus"></i> Add an employee</a
+      >
+      <br />
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+            <tr>
+              <th>Employee id</th>
+              <th class="text-center">Employee name</th>
+              <th class="text-center">Department</th>
+              <th class="text-center">Designation</th>
+              <th class="text-center">Salary</th>
+              <th class="text-center">Edit</th>
+              <th class="text-center">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Template Row -->
+            <% for (let count = 0; count < employees.length; count++) { %>
+            <tr>
+              <td><%= employees[count].Employeeid %></td>
+              <td class="text-center"><%= employees[count].Employeename %></td>
+              <td class="text-center"><%= employees[count].Department %></td>
+              <td class="text-center"><%= employees[count].Designation %></td>
+              <td class="text-center"><%= employees[count].Salary %></td>
+              <td class="text-center">
+                <!-- ------------------------ -->
+                <!-- ADD the EDIT BUTTON HERE -->
+                <!-- ------------------------ -->
+
+                <a href="/employees/<%= employees[count]._id %>" class="btn btn-primary btn-sm">
+              <i class="fas fa-pencil-alt"></i> Edit</a>
+              </td>
+              <td class="text-center">
+              <a href="/employees/delete/<%= employees[count].Employeename %>" class="btn btn-warning btn-sm">
+        <i class="fas fa-trash"></i> Delete</a>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ------------------------ -->
+      <!-- ADD the DELETE BUTTON HERE -->
+      <!-- ------------------------ -->
+
+    </main>
+    
+      <div class="col-md-offset-1 col-md-10 text-center">
+        <ul class="pagination pagination-lg pager" id="myPager"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% include ../partials/footer.ejs %>
