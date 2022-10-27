@@ -8,7 +8,7 @@ let express = require("express");
 let router = express.Router();
 let mongoose = require("mongoose");
 
-// define the game model
+// define the employee model
 let employee = require("../models/employees");
 
 /* GET home page. wildcard */

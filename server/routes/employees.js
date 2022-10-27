@@ -114,7 +114,7 @@ router.post("/:id", (req, res, next) => {
 
 // GET - process the delete by specific employeename
 // add :Employeename to acquire the parameter  
-router.get("/delete/:Employeename", (req, res, next) => {
+router.get("/delete", (req, res, next) => {
   /*****************
    * ADD CODE HERE *
    *****************/
@@ -134,5 +134,7 @@ router.get("/delete/:Employeename", (req, res, next) => {
      }
    });
 });
+
+router.get()
 
 module.exports = router;
