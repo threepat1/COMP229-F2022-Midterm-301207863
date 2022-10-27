@@ -135,6 +135,6 @@ router.get("/delete", (req, res, next) => {
    });
 });
 
-router.get()
+
 
 module.exports = router;
